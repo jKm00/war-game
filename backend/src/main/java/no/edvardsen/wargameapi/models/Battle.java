@@ -10,6 +10,9 @@ public class Battle {
   private final Random rand = new Random();
 
   public Battle(Army armyOne, Army armyTwo) {
+    if (armyOne == null || armyTwo == null) {
+      throw new IllegalArgumentException("One or both armys are null");
+    }
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
   }
