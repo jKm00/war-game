@@ -4,11 +4,10 @@ public class RangedUnit extends Unit {
 
   private final int STRENGTH = 3;
   private final int RESISTANCE_LOWER_BOUND = 2;
-  private int resistance;
+  private int resistance = 6;
 
   public RangedUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
-    this.resistance = 6;
   }
 
   public RangedUnit(String name, int health) {

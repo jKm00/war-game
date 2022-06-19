@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UnitTest {
 
   @Test
-  void testCreation() {
+  public void testCreation() {
     Unit infantryUnit = new InfantryUnit("Infantry", 100, 10, 10);
     Unit cavalryUnit = new CavalryUnit("Cavalry", 100, 20, 10);
     Unit rangedUnit = new RangedUnit("Ranged", 60, 15, 20);
@@ -19,20 +19,16 @@ public class UnitTest {
     assertEquals(infantryUnit.getName(), "Infantry");
     assertEquals(cavalryUnit.getName(), "Cavalry");
     assertEquals(rangedUnit.getName(), "Ranged");
-    assertEquals(commanderUnit.getName(), "commander");
+    assertEquals(commanderUnit.getName(), "Commander");
 
     assertEquals(infantryUnit.getHealth(), 100);
     assertEquals(cavalryUnit.getHealth(), 100);
     assertEquals(rangedUnit.getHealth(), 60);
     assertEquals(commanderUnit.getHealth(), 50);
-
-    assertEquals(infantryUnit.getAttackBonus(), 2);
-
-    assertEquals(infantryUnit.getResistBonus(), 1);
   }
 
   @Test
-  void testFalseCreation() {
+  public void testFalseCreation() {
     try {
       new InfantryUnit("Infantry", -100);
       assertTrue(false);
@@ -42,22 +38,35 @@ public class UnitTest {
   }
 
   @Test
-  void testAttack() {
+  public void testAttack() {
     Unit infantryUnit = new InfantryUnit("Infantry", 100, 10, 10);
     Unit rangedUnit = new RangedUnit("Ranged", 70, 20, 5);
 
     infantryUnit.attack(rangedUnit);
 
-    int infantryAttack = infantryUnit.getAttack() + infantryUnit.getAttackBonus();
-    int rangedResist = rangedUnit.getArmor() + rangedUnit.getResistBonus();
-    assertEquals(rangedUnit.getHealth(), rangedUnit.getHealth() - infantryAttack + rangedResist);
+    assertEquals(rangedUnit.getHealth(), 69);
+
+    infantryUnit.attack(rangedUnit);
+
+    assertEquals(rangedUnit.getHealth(), 66);
   }
 
   @Test
-  void testRangedResistance() {
+  public void testRangedResistance() {
     Unit rangedUnit = new RangedUnit("Ranged", 100);
-    Unit infantryUnit = new InfantryUnit("Infantry", 100);
-    // TODO
+    assertEquals(rangedUnit.getResistBonus(), 6);
+    assertEquals(rangedUnit.getResistBonus(), 4);
+    assertEquals(rangedUnit.getResistBonus(), 2);
+    assertEquals(rangedUnit.getResistBonus(), 2);
+  }
+
+  @Test
+  public void testCavalryAttack() {
+    Unit cavalry = new CavalryUnit("Cavalry", 100);
+    
+    assertEquals(cavalry.getAttackBonus(), 6);
+    assertEquals(cavalry.getAttackBonus(), 2);
+    assertEquals(cavalry.getAttackBonus(), 2);
   }
   
 }
