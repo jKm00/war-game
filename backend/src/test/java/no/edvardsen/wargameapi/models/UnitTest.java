@@ -6,6 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import no.edvardsen.wargameapi.models.units.CavalryUnit;
+import no.edvardsen.wargameapi.models.units.CommanderUnit;
+import no.edvardsen.wargameapi.models.units.InfantryUnit;
+import no.edvardsen.wargameapi.models.units.RangedUnit;
+import no.edvardsen.wargameapi.models.units.Unit;
+
 @SpringBootTest
 public class UnitTest {
 

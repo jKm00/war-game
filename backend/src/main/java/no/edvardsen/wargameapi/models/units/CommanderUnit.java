@@ -1,4 +1,4 @@
-package no.edvardsen.wargameapi.models;
+package no.edvardsen.wargameapi.models.units;
 
 public class CommanderUnit extends CavalryUnit {
 

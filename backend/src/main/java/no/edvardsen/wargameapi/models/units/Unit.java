@@ -1,4 +1,4 @@
-package no.edvardsen.wargameapi.models;
+package no.edvardsen.wargameapi.models.units;
 
 /**
  * An abstract class representing the common features of a unit
@@ -24,10 +24,12 @@ public abstract class Unit {
   /**
    * Attacks a unit
    * @param unit the unit to attack
+   * @return {@code true} if the unit attacked died during the attack, {@code false} otherwise
    */
-  public void attack(Unit opponent) {
+  public boolean attack(Unit opponent) {
     int healthOpponent = opponent.getHealth();
     opponent.setHealth(healthOpponent - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus()));
+    return (opponent.getHealth() > 0) ? false : true;
   }
 
   /**
