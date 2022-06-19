@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import no.edvardsen.wargameapi.models.units.Unit;
 
 /**
@@ -12,6 +14,7 @@ import no.edvardsen.wargameapi.models.units.Unit;
  */
 public class Army {
   private String name;
+  @JsonIgnore
   private List<Unit> units;
 
   public Army(String name) {
