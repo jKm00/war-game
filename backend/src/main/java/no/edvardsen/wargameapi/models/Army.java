@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import no.edvardsen.wargameapi.models.units.CavalryUnit;
+import no.edvardsen.wargameapi.models.units.CommanderUnit;
+import no.edvardsen.wargameapi.models.units.InfantryUnit;
+import no.edvardsen.wargameapi.models.units.RangedUnit;
 import no.edvardsen.wargameapi.models.units.Unit;
 
 /**
@@ -25,6 +30,50 @@ public class Army {
   public Army(String name, List<Unit> units) {
     this.name = name;
     this.units = units;
+  }
+
+  /**
+   * Returns a list of infantry units only
+   * @return a list of all infantry units in the army
+   */
+  public List<Unit> getInfantryUnits() {
+    return this.units
+    .stream()
+    .filter(unit -> unit instanceof InfantryUnit)
+    .collect(Collectors.toList());
+  }
+
+  /**
+   * Retusn a list of all cavalries in the army
+   * @return a list of all cavalries
+   */
+  public List<Unit> getCavalryUnits() {
+    return this.units
+    .stream()
+    .filter(unit -> unit instanceof CavalryUnit && !(unit instanceof CommanderUnit))
+    .collect(Collectors.toList());
+  }
+
+  /**
+   * Returns a list with all ranged units in the army
+   * @return a list with all ranged units
+   */
+  public List<Unit> getRangeUnits() {
+    return this.units
+    .stream()
+    .filter(unit -> unit instanceof RangedUnit)
+    .collect(Collectors.toList());
+  }
+
+  /**
+   * Returns a list of all commander units in the army
+   * @return a list of all commander units
+   */
+  public List<Unit> getCommanderUnits() {
+    return this.units
+    .stream()
+    .filter(unit -> unit instanceof CommanderUnit)
+    .collect(Collectors.toList());
   }
 
   /**
@@ -48,7 +97,7 @@ public class Army {
    * @param units the list of units to be added to the army
    */
   public void addAll(List<Unit> units) {
-    this.units = units;
+    units.forEach(unit -> this.units.add(unit));
   }
 
   /**
