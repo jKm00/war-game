@@ -15,7 +15,7 @@ import no.edvardsen.wargameapi.models.units.Unit;
 public class UnitFactory {
   /**
    * Creates a unit
-   * @param type of unit
+   * @param type of unit, "infantry", "ranged", "cavalry" or "commander"
    * @param name of unit
    * @param health the unit should have
    * @return the created unit
