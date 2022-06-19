@@ -1,5 +1,7 @@
 package no.edvardsen.wargameapi.models.units;
 
+import no.edvardsen.wargameapi.models.Terrain;
+
 public class CavalryUnit extends Unit {
 
   private boolean attacked = false;
@@ -12,8 +14,9 @@ public class CavalryUnit extends Unit {
     super(name, health, 20, 12);
   }
 
+  // TODO: Implement terrain advantages
   @Override
-  public int getAttackBonus() {
+  public int getAttackBonus(Terrain terrain) {
     if (!attacked) {
       this.attacked = !this.attacked;
       return 6;
@@ -22,6 +25,7 @@ public class CavalryUnit extends Unit {
     }
   }
 
+  // TODO: This cant be right, read the discription again
   @Override
   public int getResistBonus() {
     return 1;

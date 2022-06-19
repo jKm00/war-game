@@ -7,14 +7,16 @@ import no.edvardsen.wargameapi.models.units.Unit;
 public class Battle {
   private Army armyOne;
   private Army armyTwo;
+  private Terrain terrain;
   private final Random rand = new Random();
 
-  public Battle(Army armyOne, Army armyTwo) {
+  public Battle(Army armyOne, Army armyTwo, Terrain terrain) {
     if (armyOne == null || armyTwo == null) {
       throw new IllegalArgumentException("One or both armys are null");
     }
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
+    this.terrain = terrain;
   }
 
   public Army simulate() {
@@ -39,7 +41,7 @@ public class Battle {
   private Army fight(Army attackingArmy, Army defendingArmy) {
     Unit attackingUnit = attackingArmy.getRandom();
     Unit defendingUnit = defendingArmy.getRandom();
-    if (attackingUnit.attack(defendingUnit)) {
+    if (attackingUnit.attack(defendingUnit, this.terrain)) {
       defendingArmy.remove(defendingUnit);
     }
     if (!defendingArmy.hasUnits()) {
@@ -54,6 +56,10 @@ public class Battle {
 
   private Army getArmyTwo() {
     return this.armyTwo;
+  }
+
+  public Terrain getTerrain() {
+    return this.terrain;
   }
 
   @Override

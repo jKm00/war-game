@@ -1,5 +1,7 @@
 package no.edvardsen.wargameapi.models.units;
 
+import no.edvardsen.wargameapi.models.Terrain;
+
 public class InfantryUnit extends Unit {
 
   private final int STRENGTH = 2;
@@ -14,12 +16,18 @@ public class InfantryUnit extends Unit {
   }
 
   @Override
-  public int getAttackBonus() {
+  public int getAttackBonus(Terrain terrain) {
+    if (terrain.getTerrain().equals("FOREST")) {
+      return this.STRENGTH + 2;
+    }
     return this.STRENGTH;
   }
 
   @Override
-  public int getResistBonus() {
+  public int getResistBonus(Terrain terrain) {
+    if (terrain.getTerrain().equals("FOREST")) {
+      return this.RESISTANCE + 2;
+    }
     return this.RESISTANCE;
   }
 }

@@ -1,5 +1,8 @@
 package no.edvardsen.wargameapi.models.units;
 
+import no.edvardsen.wargameapi.models.Battle;
+import no.edvardsen.wargameapi.models.Terrain;
+
 /**
  * An abstract class representing the common features of a unit
  * in the war game
@@ -24,27 +27,30 @@ public abstract class Unit {
   /**
    * Attacks a unit
    * @param unit the unit to attack
+   * @param terrain the terrain they are currently fighting in
    * @return {@code true} if the unit attacked died during the attack, {@code false} otherwise
    */
-  public boolean attack(Unit opponent) {
+  public boolean attack(Unit opponent, Terrain terrain) {
     int healthOpponent = opponent.getHealth();
-    opponent.setHealth(healthOpponent - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus()));
+    opponent.setHealth(healthOpponent - (this.getAttack() + this.getAttackBonus(terrain) + (opponent.getArmor() + opponent.getResistBonus(terrain)));
     return (opponent.getHealth() > 0) ? false : true;
   }
 
   /**
    * Returns the attack bonus of the unit
+   * @param terrain, the terrain they are currently fighting in
    * @return the attack bonus of the unit
    */
-  public int getAttackBonus() {
+  public int getAttackBonus(Terrain terrain) {
     return 0;
   }
   
   /**
    * Returns the resistance bonus of the unit
+   * @param terrain, the terrain they are currently fighting in
    * @return the resistance bonus of the unit
    */
-  public int getResistBonus() {
+  public int getResistBonus(Terrain terrain) {
     return 0;
   }
 
