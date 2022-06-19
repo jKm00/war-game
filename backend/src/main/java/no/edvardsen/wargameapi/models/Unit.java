@@ -25,17 +25,23 @@ public abstract class Unit {
    * Attacks a unit
    * @param unit the unit to attack
    */
-  public void attach(Unit opponent) {
+  public void attack(Unit opponent) {
     int healthOpponent = opponent.getHealth();
     opponent.setHealth(healthOpponent - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus()));
   }
 
-  // TODO
+  /**
+   * Returns the attack bonus of the unit
+   * @return the attack bonus of the unit
+   */
   public int getAttackBonus() {
     return 0;
   }
   
-  // TODO
+  /**
+   * Returns the resistance bonus of the unit
+   * @return the resistance bonus of the unit
+   */
   public int getResistBonus() {
     return 0;
   }
