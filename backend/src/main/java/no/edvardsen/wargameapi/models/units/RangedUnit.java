@@ -18,20 +18,25 @@ public class RangedUnit extends Unit {
 
   @Override
   public int getAttackBonus(Terrain terrain) {
-    if (terrain.getTerrain().equals("HILL")) {
+    if (terrain == Terrain.HILL) {
       return this.STRENGTH + 2;
-    } else if (terrain.getTerrain().equals("FOREST")) {
+    } else if (terrain == Terrain.FOREST) {
       return this.STRENGTH - 2;
     }
     return this.STRENGTH;
   }
 
   @Override
-  public int getResistBonus(Terrain terrain) {
+  public int getResistBonus() {
     int resistanceValue = this.resistance;
     if (this.resistance > RESISTANCE_LOWER_BOUND) {
       this.resistance -= 2;
     }
     return resistanceValue;
+  }
+
+  @Override
+  public int getResistBonus(Terrain terrain) {
+    return getResistBonus();
   }
 }

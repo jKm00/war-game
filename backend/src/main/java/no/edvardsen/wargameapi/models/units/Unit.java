@@ -1,6 +1,5 @@
 package no.edvardsen.wargameapi.models.units;
 
-import no.edvardsen.wargameapi.models.Battle;
 import no.edvardsen.wargameapi.models.Terrain;
 
 /**
@@ -32,7 +31,7 @@ public abstract class Unit {
    */
   public boolean attack(Unit opponent, Terrain terrain) {
     int healthOpponent = opponent.getHealth();
-    opponent.setHealth(healthOpponent - (this.getAttack() + this.getAttackBonus(terrain) + (opponent.getArmor() + opponent.getResistBonus(terrain)));
+    opponent.setHealth(healthOpponent - (this.getAttack() + this.getAttackBonus(terrain)) + (opponent.getArmor() + opponent.getResistBonus(terrain)));
     return (opponent.getHealth() > 0) ? false : true;
   }
 
@@ -41,18 +40,20 @@ public abstract class Unit {
    * @param terrain, the terrain they are currently fighting in
    * @return the attack bonus of the unit
    */
-  public int getAttackBonus(Terrain terrain) {
-    return 0;
-  }
+  public abstract int getAttackBonus(Terrain terrain);
+
+  /**
+   * Returns the default resistance bonus of the unit
+   * @return the default resistance bonus
+   */
+  public abstract int getResistBonus();
   
   /**
-   * Returns the resistance bonus of the unit
+   * Returns the resistance bonus of the unit based on the terrain
    * @param terrain, the terrain they are currently fighting in
    * @return the resistance bonus of the unit
    */
-  public int getResistBonus(Terrain terrain) {
-    return 0;
-  }
+  public abstract int getResistBonus(Terrain terrain);
 
   public String getName() {
     return this.name;

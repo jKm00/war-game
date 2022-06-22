@@ -48,11 +48,11 @@ public class UnitTest {
     Unit infantryUnit = new InfantryUnit("Infantry", 100, 10, 10);
     Unit rangedUnit = new RangedUnit("Ranged", 70, 20, 5);
 
-    infantryUnit.attack(rangedUnit);
+    infantryUnit.attack(rangedUnit, Terrain.PLAINS);
 
     assertEquals(rangedUnit.getHealth(), 69);
 
-    infantryUnit.attack(rangedUnit);
+    infantryUnit.attack(rangedUnit, Terrain.PLAINS);
 
     assertEquals(rangedUnit.getHealth(), 66);
   }
@@ -69,10 +69,16 @@ public class UnitTest {
   @Test
   public void testCavalryAttack() {
     Unit cavalry = new CavalryUnit("Cavalry", 100);
+
+    assertEquals(cavalry.getAttackBonus(Terrain.FOREST), 6);
+    assertEquals(cavalry.getAttackBonus(Terrain.FOREST), 2);
+    assertEquals(cavalry.getAttackBonus(Terrain.FOREST), 2);
     
-    assertEquals(cavalry.getAttackBonus(), 6);
-    assertEquals(cavalry.getAttackBonus(), 2);
-    assertEquals(cavalry.getAttackBonus(), 2);
+    Unit cavalry2 = new CavalryUnit("Cabalry two", 100);
+
+    assertEquals(cavalry2.getAttackBonus(Terrain.PLAINS), 8);
+    assertEquals(cavalry2.getAttackBonus(Terrain.PLAINS), 4);
+    assertEquals(cavalry2.getAttackBonus(Terrain.PLAINS), 4);
   }
   
 }

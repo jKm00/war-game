@@ -1,19 +1,11 @@
 package no.edvardsen.wargameapi.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import no.edvardsen.wargameapi.factories.UnitFactory;
 import no.edvardsen.wargameapi.models.Army;
 import no.edvardsen.wargameapi.models.Battle;
-import no.edvardsen.wargameapi.models.units.CavalryUnit;
-import no.edvardsen.wargameapi.models.units.CommanderUnit;
-import no.edvardsen.wargameapi.models.units.InfantryUnit;
-import no.edvardsen.wargameapi.models.units.RangedUnit;
-import no.edvardsen.wargameapi.models.units.Unit;
 
 @Service
 public class BattleService {

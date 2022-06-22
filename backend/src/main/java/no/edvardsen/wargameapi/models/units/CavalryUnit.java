@@ -14,20 +14,30 @@ public class CavalryUnit extends Unit {
     super(name, health, 20, 12);
   }
 
-  // TODO: Implement terrain advantages
   @Override
   public int getAttackBonus(Terrain terrain) {
+    int bonus = 0;
+    if (terrain == Terrain.PLAINS) {
+      bonus = 2;
+    }
     if (!attacked) {
       this.attacked = !this.attacked;
-      return 6;
+      return 6 + bonus;
     } else {
-      return 2;
+      return 2 + bonus;
     }
   }
 
-  // TODO: This cant be right, read the discription again
   @Override
   public int getResistBonus() {
+    return 1;
+  }
+
+  @Override
+  public int getResistBonus(Terrain terrain) {
+    if (terrain == Terrain.FOREST) {
+      return 0;
+    }
     return 1;
   }
 }

@@ -17,15 +17,20 @@ public class InfantryUnit extends Unit {
 
   @Override
   public int getAttackBonus(Terrain terrain) {
-    if (terrain.getTerrain().equals("FOREST")) {
+    if (terrain == Terrain.FOREST) {
       return this.STRENGTH + 2;
     }
     return this.STRENGTH;
   }
 
   @Override
+  public int getResistBonus() {
+    return this.STRENGTH;
+  }
+
+  @Override
   public int getResistBonus(Terrain terrain) {
-    if (terrain.getTerrain().equals("FOREST")) {
+    if (terrain == Terrain.FOREST) {
       return this.RESISTANCE + 2;
     }
     return this.RESISTANCE;

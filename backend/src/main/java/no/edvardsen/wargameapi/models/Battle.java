@@ -4,19 +4,22 @@ import java.util.Random;
 
 import no.edvardsen.wargameapi.models.units.Unit;
 
+/**
+ * Represents a battle between two armys
+ */
 public class Battle {
   private Army armyOne;
   private Army armyTwo;
   private Terrain terrain;
   private final Random rand = new Random();
 
-  public Battle(Army armyOne, Army armyTwo, Terrain terrain) {
+  public Battle(Army armyOne, Army armyTwo) {
     if (armyOne == null || armyTwo == null) {
       throw new IllegalArgumentException("One or both armys are null");
     }
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
-    this.terrain = terrain;
+    this.terrain = Terrain.FOREST;
   }
 
   public Army simulate() {
@@ -69,5 +72,4 @@ public class Battle {
       ", armyTwo='" + getArmyTwo() + "'" +
       "}";
   }
-
 }
